@@ -1,0 +1,6 @@
+amrlib
+penman
+rdflib
+requests
+SPARQLWrapper
+google-genai

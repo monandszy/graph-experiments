@@ -1,0 +1,9 @@
+Archive
+Engine
+graphdb/graphdb/
+graphdb/*.license
+.vscode
+__pycache__
+ai_api_key
+GraphOntology
+AmrParsing
