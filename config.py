@@ -19,7 +19,7 @@ if not AI_API_KEY:
   if _key_file.exists():
     AI_API_KEY = _key_file.read_text(encoding="utf-8").strip()
 
-# Level can be one of: DEBUG, INFO, WARNING, ERROR, CRITICAL
+# one of: DEBUG, INFO, WARNING, ERROR, CRITICAL
 LOG_LEVEL = "INFO"
 
 def configure_logging():
@@ -41,11 +41,6 @@ def configure_logging():
   root.setLevel(level)
   root.addHandler(handler)
 
-
-# -----------------------------
-# Pipeline prompt and sample input
-# -----------------------------
-# Main instruction prompt used when calling the AI enhancer. Edit as needed.
 G_PROMPT = """
   instruction: You are an expert Natural Language Processing system. You are a step in a English to Graph processing pipeline. Your primary goal is to modify the automatically generated AMR graph. Ensure it matches the meaning of the origin sentence. If not modify it accordingly to the rules. You have to overcome the limitations of the AMR parser. Follow these rules precisely for every sentence you process.
 
@@ -59,13 +54,12 @@ G_PROMPT = """
   For plural forms without a specific number use :quant (mutliple)
 
   The Class / Instance Model and Coreference Resolution
-  To build a coherent knowledge graph, you must distinguish between a concept (class) and a specific thing (instance). If an object is concrete, give it an instance ID in format ({concept_name}-{id}), then use :instanceOf to relate it to the concept node ({concept_name}).
+  To build a coherent knowledge graph, you must distinguish between a concept (class) and a specific thing (instance). If an object is concrete, give it an instance ID in format (concept_name-id), then use :instanceOf to relate it to the concept node (concept_name).
 
   input amr graph:"""
 
-# Sample input sentences used by `pipeline.py` when no other input is provided.
 G_INPUT_SENTENCE = [
-    'Wolf of agentive particles that disprove greeny to your homes dna that prowse your stoo'
+  'Wolf of agentive particles that disprove greeny to your homes dna that prowse your stoo'
 ]
 
 

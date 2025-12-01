@@ -7,8 +7,6 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-# Prompt and input sentence are configured in `config.py` as `G_PROMPT` and `G_INPUT_SENTENCE`.
-
 def main():
   configure_logging()
   logger.info("Running...")
