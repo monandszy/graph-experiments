@@ -22,6 +22,10 @@ if not AI_API_KEY:
 # one of: DEBUG, INFO, WARNING, ERROR, CRITICAL
 LOG_LEVEL = "INFO"
 
+LOG_TO_FILE = True
+LOG_DIR = "logs"
+LOG_FILE_PREFIX = "run"
+
 def configure_logging():
   """Configure the root logger according to `LOG_LEVEL`.
 
@@ -40,6 +44,18 @@ def configure_logging():
 
   root.setLevel(level)
   root.addHandler(handler)
+
+  if LOG_TO_FILE:
+    from logging import FileHandler
+    from datetime import datetime
+
+    log_dir = Path(LOG_DIR)
+    log_dir.mkdir(parents=True, exist_ok=True)
+    ts = datetime.now().strftime("%Y%m%d_%H%M%S")
+    log_path = log_dir / f"{LOG_FILE_PREFIX}_{ts}.log"
+    file_handler = FileHandler(log_path, encoding="utf-8")
+    file_handler.setFormatter(Formatter("%(asctime)s %(levelname)-8s [%(name)s] %(message)s", "%Y-%m-%d %H:%M:%S"))
+    root.addHandler(file_handler)
 
 G_PROMPT = """
   instruction: You are an expert Natural Language Processing system. You are a step in a English to Graph processing pipeline. Your primary goal is to modify the automatically generated AMR graph. Ensure it matches the meaning of the origin sentence. If not modify it accordingly to the rules. You have to overcome the limitations of the AMR parser. Follow these rules precisely for every sentence you process.

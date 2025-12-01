@@ -1,0 +1,20 @@
+version: "3.3"
+
+networks:
+  default:
+    external:
+      name: data
+
+services:
+  dgraphgui:
+    image: dgraph/ratel:latest
+    container_name: dgraphgui
+    ports:
+      - "8000:8000"
+  dgraphdb:
+    image: dgraph/standalone:latest
+    container_name: dgraphdb
+    ports:
+      - "8080:8080"
+      - "9080:9080"
+    privileged: true

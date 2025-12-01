@@ -16,9 +16,9 @@ def main():
     turtle_data = amr_to_rdf(graph)
     logger.info("Turtle data:\n%s", turtle_data)
     upload_turtle_to_graphdb(turtle_data)
-    ai_input = G_PROMPT + graph
-    enchanced = generate(ai_input)
-    logger.info("AI enhancement result: %s", getattr(enchanced, "text", str(enchanced)))
+    # ai_input = G_PROMPT + graph
+    # enchanced = generate(ai_input)
+    # logger.info("AI enhancement result: %s", getattr(enchanced, "text", str(enchanced)))
 
 if __name__ == "__main__":
-    main()
+  main()

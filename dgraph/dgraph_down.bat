@@ -1,0 +1,1 @@
+docker-compose -f dgraph-compose.yml -p graph-experiments down
